@@ -37,7 +37,23 @@
 // new Error("Invalid Input")
 
 const getObjectStructure = (obj) => {
-  // write code here
+  if(typeof(obj)==="object"){
+    if(JSON.stringify(obj) === '{}'){
+      return {}
+    }
+    else{
+      for(key in obj){
+        obj[key]=typeof(obj[key]);
+       
+      }
+      return obj;
+     
+    }
+   
+  }
+  else{
+    throw new Error("Invalid Input");
+  }
 };
 
 // donot remove this line

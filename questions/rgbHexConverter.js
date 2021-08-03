@@ -2,27 +2,34 @@
  * The function takes three arguments corresponding to R,G and B values.
  * The function converts these values to corresponding HEX color code
  */
+ var rgbToHex = function (rgb) { 
+    var hex = Number(rgb).toString(16);
+    if ( hex.length < 2) {
+        hex = "0" + hex;
+    }
+    return hex;
+  };
+  
 const rgbToHexConversion = (...rgbValues) => {
-    
-    var rgbToHex = function (rgb) { 
-        var hex = Number(rgb).toString(16);
-        if(Number.isInteger(hex) && hex <= 255){
-            if ( hex.length < 2) {
-                hex = "0" + hex;
+    let hexCode="#";
+    if(rgbValues.length <= 3){
+       let resultArray=rgbValues.forEach((value)=>{
+           if(Number.isInteger(value) && value <= 255){              
+            
+            var color = rgbToHex(value);
+            hexCode+=color;
            }
-           return hex;
-        }
-        else{
-            new Error("Invalid Input");
-        }
-        
-      };
+           else{
+               throw new Error("Invalid Input");
+           }
+       });
 
-     
-        var red = rgbToHex(rgbValues[0]);
-        var green = rgbToHex(rgbValues[1]);
-        var blue = rgbToHex(rgbValues[2]);
-        return red+green+blue;
+    }
+    else{
+        throw new Error("Invalid Input");
+    }
+    return hexCode;
+
      
 
 
